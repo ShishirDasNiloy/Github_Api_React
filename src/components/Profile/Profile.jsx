@@ -3,8 +3,7 @@ import classes from './Profile.module.css'
 
 const Profile = () => {
     const [userInfo, setUserInfo] = useState({})
-
-    const userName = 'ShishirDasNiloy'
+    const [userName, setUserName] = useState({})
 
     useEffect(() => {
         let controller = new AbortController()
@@ -29,7 +28,11 @@ const Profile = () => {
         <div className={classes.body}>
             <div className={classes.container}>
                 <div className={classes.search}>
-                    <input type="text" />
+                    <input onChange={(e) => setUserInfo(e.target.value)} type="text" />
+
+                    <button type="submit" onClick={() => setUserName(userInfo)}>
+                        Search
+                    </button>
                 </div>
                 <div className={classes.main}>
                     <div className={classes.left}>
@@ -39,9 +42,9 @@ const Profile = () => {
                     <div className={classes.right}>
                         <span>
                             <h1>{userInfo.name}</h1>
-                            <h2> Followers: {userInfo.followers}</h2>
-                            <h2> Following : {userInfo.following}</h2>
-                            <h2>Location: {userInfo.location}</h2>
+                            <h4> Followers: {userInfo.followers}</h4>
+                            <h4> Following : {userInfo.following}</h4>
+                            <h4>Location: {userInfo.location}</h4>
                         </span>
                     </div>
                 </div>
